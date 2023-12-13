@@ -2,7 +2,9 @@ const express = require('express');
 const plantsRouter = express.Router();
 const plantsControllers = require('../controllers/plants.controller');
 
-plantsRouter.get('/', plantsControllers.getAllPlants)
+plantsRouter.get('/', plantsControllers.getPlants)
+plantsRouter.post('/', plantsControllers.createPlant)
+plantsRouter.put('/', plantsControllers.editPlant)
 plantsRouter.post('/populate-plants', plantsControllers.poblarTablaPlantas );
 
 
