@@ -5,7 +5,8 @@ const plantsControllers = require('../controllers/plants.controller');
 plantsRouter.get('/', plantsControllers.getPlants)
 plantsRouter.post('/', plantsControllers.createPlant)
 plantsRouter.put('/', plantsControllers.editPlant)
-plantsRouter.post('/populate-plants', plantsControllers.poblarTablaPlantas );
+plantsRouter.delete('/', plantsControllers.deletePlant)
+plantsRouter.post('/populate-plants', plantsControllers.poblarTablaPlantas);
 
 
 module.exports = plantsRouter;
