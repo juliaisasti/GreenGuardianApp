@@ -7,6 +7,7 @@ import { Box, Flex } from "@chakra-ui/react"
 
 const PlantList = () => {
   const [plants, setPlants] = useState([]);
+  const [favPlants, setFavPlants] = useState([])
 
 
   useEffect(() => {
@@ -20,16 +21,16 @@ const PlantList = () => {
     getAllPlants();
   }, [])
 
-  useEffect(() => {
-    const getFavPlants = async () => {
-      const resp = await axios.get(
-        "http://localhost:3000/plants"
-      );
-      const plantsData = (resp.data);
-      setPlants(plantsData);
-    } 
-    getAllPlants();
-  }, [])
+  // useEffect(() => {
+  //   const getFavPlants = async () => {
+  //     const resp = await axios.get(
+  //       "http://localhost:3000/fav-plants"
+  //     );
+  //     const favPlantsData = (resp.data);
+  //     setPlants(favPlantsData);
+  //   } 
+  //   getFavPlants();
+  // }, [])
 
   const paintCard = () => {
   return plants.map((p) =>
