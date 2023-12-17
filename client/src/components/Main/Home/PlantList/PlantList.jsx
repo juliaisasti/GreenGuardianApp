@@ -18,15 +18,24 @@ const PlantList = () => {
       setPlants(plantsData);
     } 
     getAllPlants();
+  }, [])
 
-    return () => {
-    }
+  useEffect(() => {
+    const getFavPlants = async () => {
+      const resp = await axios.get(
+        "http://localhost:3000/plants"
+      );
+      const plantsData = (resp.data);
+      setPlants(plantsData);
+    } 
+    getAllPlants();
   }, [])
 
   const paintCard = () => {
   return plants.map((p) =>
   <PlantCard
     key={uuidv4()}
+    plant_id={p.plant_id}
     image_url={p.image_url}
     common_name={p.common_name}
     scientific_name={p.scientific_name}

@@ -1,7 +1,11 @@
 import React from "react";
+import PlantList from "../Home/PlantList/PlantList";
+
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <PlantList />
+  );
 };
 
 export default Profile;

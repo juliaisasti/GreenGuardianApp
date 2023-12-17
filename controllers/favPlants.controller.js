@@ -9,12 +9,16 @@ const getFavPlants = async (req, res) => {
   if (fav_id) {
     try {
       const query = await FavPlants.findOne({
-        where: { fav_id },
-        include: {
-          model: Plants
-        }
+        where: { fav_id: fav_id }
       });
-      res.status(200).json(query);
+      const plant = await Plants.findOne({
+        where: {plant_id: query.plant_id}
+      })
+      const favObj= {
+        favPlant: query,
+        plantDetail: plant
+      }
+      res.status(200).json(favObj);
     } catch (error) {
       console.log(error);
       res.status(400).json({ error: error.message });
@@ -23,7 +27,8 @@ const getFavPlants = async (req, res) => {
     try {
       const query = await FavPlants.findAll({
         include: {
-          model: Plants        }
+          model: Plants
+        }
       });
       console.log(query);
       res.status(200).json(query);
@@ -37,6 +42,11 @@ const getFavPlants = async (req, res) => {
 // ADD PLANT
 const createFavPlant = async (req, res) => {
   try {
+    // const plant = await Plants.findOne({where: req.body.plant_id})
+
+    // const favPlant = {
+
+    // }
     const query = await FavPlants.create(req.body);
     res.status(201).json(query);
   } catch (error) {

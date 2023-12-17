@@ -8,7 +8,7 @@ const { DataTypes } = require("sequelize");
 
 // Defines the schema using the define method on our db object. Define has as first argument the name of the model and as second argument an object containing the name of the fields and their features.
 
-// const Plants = require('./plants.model')
+const Plants = require('./plants.model')
 
 const FavPlants = db.define(
   "FavPlants",
@@ -21,7 +21,11 @@ const FavPlants = db.define(
     },
     plant_id: {
       field: "plant_id",
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER,    
+      references: {
+        model: Plants,
+        key: 'plant_id'
+      }
     },
     personal_name: {
       field: "personal_name",

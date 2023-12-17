@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { FavPlantContext } from "../../../../../context/FavPlantContext";
 import {
   Card,
   CardHeader,
@@ -25,6 +27,7 @@ import {
 } from "@chakra-ui/react";
 
 const PlantCard = ({
+  plant_id,
   common_name,
   image_url,
   scientific_name,
@@ -32,14 +35,29 @@ const PlantCard = ({
   sunlight,
   watering,
 }) => {
+  const { updateFavPlant } = useContext(FavPlantContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleClickAdd = () => {
+    const plantObj = {
+      plant_id,
+      common_name,
+      image_url,
+      scientific_name,
+      climate,
+      sunlight,
+      watering
+    };
+    updateFavPlant(plantObj);
+  };
 
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Details: {common_name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Card maxW="sm" backgroundColor="green.50" m="10px">
@@ -53,20 +71,26 @@ const PlantCard = ({
                   <Text>Watering level: {watering}</Text>
                 </Stack>
               </CardBody>
-              <Divider />
-              <CardFooter justify="end">
-              </CardFooter>
+              <CardFooter justify="end"></CardFooter>
             </Card>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button
+              variant="ghost"
+              colorScheme="green"
+              mr={3}
+              onClick={handleClickAdd}
+            >
+              <Link to="/add-favorite">Add</Link>
+            </Button>
+            <Button colorScheme="green" mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Card maxW="sm" backgroundColor="green.50" m="10px">
+      <Card id={plant_id} maxW="sm" backgroundColor="green.50" m="10px">
         <CardBody>
           <Image src={image_url} borderRadius="20px" />
           <Stack mt="6" spacing="3">
@@ -81,7 +105,7 @@ const PlantCard = ({
               Get details
             </Button>
             <Button variant="solid" colorScheme="green">
-              Add
+              <Link to="/add-favorite">Add</Link>
             </Button>
           </ButtonGroup>
         </CardFooter>

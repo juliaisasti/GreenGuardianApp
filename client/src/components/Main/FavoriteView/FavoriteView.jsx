@@ -1,7 +1,10 @@
 import React from "react";
+import FavoriteForm from './FavoriteForm'
 
 const FavoriteView = () => {
-  return <div>FavoriteView</div>;
+  return (
+    <FavoriteForm />
+  )
 };
 
 export default FavoriteView;
