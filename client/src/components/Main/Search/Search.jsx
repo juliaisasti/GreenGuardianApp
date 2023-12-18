@@ -33,6 +33,22 @@ const Search = () => {
     };
     getPlant();
   };
+
+  const paintCard = () => {
+    return <Card maxW="sm" backgroundColor="green.50" m="10px">
+              <CardBody>
+                <Image src={plants.image_url} borderRadius="20px" />
+                <Stack mt="6" spacing="3">
+                  <Heading size="md">{plants.common_name}</Heading>
+                  <Heading size="sm">{plants.scientific_name}</Heading>
+                  <Text>Climate: {plants.climate}</Text>
+                  <Text>Sunlight level: {plants.sunlight}</Text>
+                  <Text>Watering level: {plants.watering}</Text>
+                </Stack>
+              </CardBody>
+              <CardFooter justify="end"></CardFooter>
+            </Card>
+  }
   
 
   return (
@@ -41,7 +57,9 @@ const Search = () => {
         <Input name="plant_searched" />
         <button className="search_button">search!!!</button>
       </form>
-      <PlantList />
+      {plants?paintCard():''}
+
+      {/* <PlantList /> */}
     </>
   );
 };

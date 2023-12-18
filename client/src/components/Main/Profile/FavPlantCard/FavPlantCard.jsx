@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { FavPlantContext } from "../../../../context/FavPlantContext";
+import axios from "axios";
+
 import {
   Card,
   CardHeader,
@@ -15,18 +15,8 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-} from "@chakra-ui/react";
-
 const FavPlantCard = ({
+  personal_name,
   plant_id,
   common_name,
   image_url,
@@ -34,63 +24,38 @@ const FavPlantCard = ({
   climate,
   sunlight,
   watering,
+  last_watered,
+  water_reminder,
+  status
 }) => {
-  const { favPlant, updateFavPlant } = useContext(FavPlantContext);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const deleteFav = async () =>{
+    const resp = await axios.delete(`http://localhost:3000/fav-plants?personal_name=${personal_name}`)
+    return resp
+  }
 
 
   return (
-    <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Details: {common_name}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Card maxW="sm" backgroundColor="green.50" m="10px">
-              <CardBody>
-                <Image src={image_url} borderRadius="20px" />
-                <Stack mt="6" spacing="3">
-                  <Heading size="md">{common_name}</Heading>
-                  <Heading size="sm">{scientific_name}</Heading>
-                  <Text>Climate: {climate}</Text>
-                  <Text>Sunlight level: {sunlight}</Text>
-                  <Text>Watering level: {watering}</Text>
-                </Stack>
-              </CardBody>
-              <CardFooter justify="end"></CardFooter>
-            </Card>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button variant="ghost" colorScheme="green" mr={3}>
-              <Link to="/add-favorite">Add</Link>
-            </Button>
-            <Button colorScheme="green" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-      <Card id={plant_id} maxW="sm" backgroundColor="green.50" m="10px">
-        <CardBody>
-          <Image src={image_url} borderRadius="20px" />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">{common_name}</Heading>
-            <Heading size="sm">{scientific_name}</Heading>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter justify="end">
-          <ButtonGroup spacing="2">
-            <Button variant="ghost" colorScheme="green" onClick={onOpen}>
-              Get details
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-    </>
+    <Card maxW="sm" backgroundColor="green.50" m="10px">
+      <CardBody>
+        <Image src={image_url} borderRadius="20px" />
+        <Stack mt="6" spacing="3">
+          <Heading size="lg">{personal_name}</Heading>
+          <Heading size="md">{common_name}</Heading>
+          <Heading size="sm">{scientific_name}</Heading>
+          <Text>Climate: {climate}</Text>
+          <Text>Sunlight level: {sunlight}</Text>
+          <Text>Watering level: {watering}</Text>
+          <Text>Have you watered your plant?</Text>
+          <Text>Last watered on the {last_watered}</Text>
+          <Text>Watering level: {water_reminder}</Text>
+        </Stack>
+      </CardBody>
+      <CardFooter justify="end">
+        {/* <Button onClick={deleteFav()}>Delete</Button> */}
+      </CardFooter>
+    </Card>
   );
 };
 
