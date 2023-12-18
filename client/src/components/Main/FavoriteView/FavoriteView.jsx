@@ -9,9 +9,6 @@ import {
   Stack,
   Heading,
   Text,
-  Divider,
-  ButtonGroup,
-  Button,
   Image,
 } from "@chakra-ui/react";
 

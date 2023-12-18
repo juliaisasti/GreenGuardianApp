@@ -20,6 +20,13 @@ const Profile = () => {
     console.log(favPlants);
   }, []);
 
+  const deleteFav = async (personal_name, i) =>{
+    const remainingFavPlants = await favPlants.filter((plant, j) => i !== j);
+    setFavPlants(remainingFavPlants)
+    const resp = await axios.delete(`http://localhost:3000/fav-plants?personal_name=${personal_name}`)
+
+  }
+
   return (
     <>
       <Flex align='center' justify='center'>
@@ -39,8 +46,9 @@ const Profile = () => {
           sunlight={p.plant.sunlight}
           watering={p.plant.watering}
           last_watered={p.fav.last_watered}
-          water_reminder={p.fav.last_watered}
+          water_reminder={p.fav.water_reminder}
           status={p.fav.status}
+          deleteFav={()=>deleteFav(p.fav.personal_name)}
         />
       )):null}
 </Flex>

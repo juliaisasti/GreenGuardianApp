@@ -9,7 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
 
-  const [favPlant, setFavPlant] = useState(JSON.parse(localStorage.getItem('plant_context')));
+  const [favPlant, setFavPlant] = useState(JSON.parse(localStorage.getItem('plant_context'))); // LOCAL STORAGE PARA QUE NO SE BORRE EN EL FORM DE FAVORITOS
+  // FUNCIÓN AUXILIAR PARA CAMBIAR EL ESTADO DEL CONTEXT
   const updateFavPlant = (newFavPlant) => {
     setFavPlant(newFavPlant);
   };

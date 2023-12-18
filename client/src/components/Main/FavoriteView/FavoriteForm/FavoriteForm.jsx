@@ -24,6 +24,7 @@ const FavoriteForm = () => {
     last_watered: "",
   });
 
+  // PARA IR GUARDANDO EL VALOR DE FORM DATA EN EL ESTADO PARA QUE AL HACER EL SUBMIT LOS VALORES YA ESTÉN AHÍ
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -50,14 +51,13 @@ const FavoriteForm = () => {
         "http://localhost:3000/fav-plants/",
         plantsData
       );
-      console.log(resp);
     };
     createFavPlant();
   };
 
   const handleCalcWatering = (last_watered, watering) => {
     last_watered = formData.last_watered;
-    watering = favPlant.watering;
+    watering = favPlant.watering; // ESTO ACCEDE A LA POSICION QUE NECESITO DEL ARRAY
 
     const arrWatering = [30, 20, 12, 7, 4];
 

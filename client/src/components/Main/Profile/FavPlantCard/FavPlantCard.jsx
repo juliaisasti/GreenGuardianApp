@@ -26,15 +26,9 @@ const FavPlantCard = ({
   watering,
   last_watered,
   water_reminder,
-  status
+  status,
+  deleteFav
 }) => {
-
-
-  const deleteFav = async () =>{
-    const resp = await axios.delete(`http://localhost:3000/fav-plants?personal_name=${personal_name}`)
-    return resp
-  }
-
 
   return (
     <Card maxW="sm" backgroundColor="green.50" m="10px">
@@ -49,11 +43,11 @@ const FavPlantCard = ({
           <Text>Watering level: {watering}</Text>
           <Text>Have you watered your plant?</Text>
           <Text>Last watered on the {last_watered}</Text>
-          <Text>Watering level: {water_reminder}</Text>
+          <Text>Should be watered on the {water_reminder}</Text>
         </Stack>
       </CardBody>
       <CardFooter justify="end">
-        {/* <Button onClick={deleteFav()}>Delete</Button> */}
+        <Button onClick={deleteFav}>Delete</Button>
       </CardFooter>
     </Card>
   );
