@@ -1,0 +1,14 @@
+[
+    {
+      "personal_name": "mi plantita",
+      "status": true,
+      "last_watered": null,
+      "water_reminder": null
+    },
+    {
+      "personal_name": "mi plantita 2",
+      "status": false,
+      "last_watered": null,
+      "water_reminder": null
+    }
+  ]
