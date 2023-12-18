@@ -26,7 +26,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-const PlantDetail = ({
+const FavPlantCard = ({
   plant_id,
   common_name,
   image_url,
@@ -39,20 +39,6 @@ const PlantDetail = ({
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleClickAdd = () => {
-    const plantObj = {
-      plant_id,
-      common_name,
-      image_url,
-      scientific_name,
-      climate,
-      sunlight,
-      watering
-    };
-    updateFavPlant(plantObj);
-    console.log(plantObj);
-    localStorage.setItem('plant_context', JSON.stringify(plantObj));
-  };
 
   return (
     <>
@@ -78,12 +64,7 @@ const PlantDetail = ({
           </ModalBody>
 
           <ModalFooter>
-            <Button
-              variant="ghost"
-              colorScheme="green"
-              mr={3}
-              onClick={handleClickAdd}
-            >
+            <Button variant="ghost" colorScheme="green" mr={3}>
               <Link to="/add-favorite">Add</Link>
             </Button>
             <Button colorScheme="green" mr={3} onClick={onClose}>
@@ -106,9 +87,6 @@ const PlantDetail = ({
             <Button variant="ghost" colorScheme="green" onClick={onOpen}>
               Get details
             </Button>
-            <Button variant="solid" colorScheme="green" onClick={handleClickAdd}>
-              <Link to="/add-favorite">Add</Link>
-            </Button>
           </ButtonGroup>
         </CardFooter>
       </Card>
@@ -116,5 +94,4 @@ const PlantDetail = ({
   );
 };
 
-export default PlantDetail;
-
+export default FavPlantCard;

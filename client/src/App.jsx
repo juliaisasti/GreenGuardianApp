@@ -9,7 +9,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
 
-  const [favPlant, setFavPlant] = useState({});
+  const [favPlant, setFavPlant] = useState(JSON.parse(localStorage.getItem('plant_context')));
   const updateFavPlant = (newFavPlant) => {
     setFavPlant(newFavPlant);
   };

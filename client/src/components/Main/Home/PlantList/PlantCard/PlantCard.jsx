@@ -35,7 +35,7 @@ const PlantCard = ({
   sunlight,
   watering,
 }) => {
-  const { updateFavPlant } = useContext(FavPlantContext);
+  const { favPlant, updateFavPlant } = useContext(FavPlantContext);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -50,6 +50,8 @@ const PlantCard = ({
       watering
     };
     updateFavPlant(plantObj);
+    console.log(plantObj);
+    localStorage.setItem('plant_context', JSON.stringify(plantObj));
   };
 
   return (
@@ -104,7 +106,7 @@ const PlantCard = ({
             <Button variant="ghost" colorScheme="green" onClick={onOpen}>
               Get details
             </Button>
-            <Button variant="solid" colorScheme="green">
+            <Button variant="solid" colorScheme="green" onClick={handleClickAdd}>
               <Link to="/add-favorite">Add</Link>
             </Button>
           </ButtonGroup>
@@ -116,13 +118,3 @@ const PlantCard = ({
 
 export default PlantCard;
 
-{
-  /* <section className="plantCard">
-      <img src={image_url} />
-      <p>{common_name}</p>
-      <p>{scientific_name}</p>
-      <p>{climate}</p>
-      <p>{sunlight}</p>
-      <p>{watering}</p>
-    </section> */
-}

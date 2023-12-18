@@ -3,6 +3,7 @@ import axios from "axios";
 import PlantCard from "./PlantCard";
 import { v4 as uuidv4 } from 'uuid';
 import { Box, Flex } from "@chakra-ui/react"
+import { Divider } from '@chakra-ui/react'
 
 
 const PlantList = () => {
@@ -48,9 +49,12 @@ const PlantList = () => {
 }
 
   return (
+  <> 
+  <Divider />
   <Flex wrap='wrap' align='center' justify='center'>
     {plants ? paintCard() : ""}
   </Flex>
+  </> 
   ) 
 };
 

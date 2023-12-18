@@ -8,15 +8,15 @@ const Description = () => {
   return (
     <Carousel>
                 <article>
-                    <img src="./public/img/bg1.png" />
+                    <img src="./img/bg1.png" />
                     {/* <p className="legend">Legend 1</p> */}
                 </article>
                 <article>
-                    <img src="./public/img/bg2.png" />
+                    <img src="./img/bg2.png" />
                     {/* <p className="legend">Legend 2</p> */}
                 </article>
                 <article>
-                    <img src="./public/img/bg3.png" />
+                    <img src="./img/bg3.png" />
                     {/* <p className="legend">Legend 3</p> */}
                 </article>
             </Carousel>
