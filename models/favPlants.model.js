@@ -1,61 +1,60 @@
-// // schemas/autores.js
+// schemas/autores.js
 
-// // Requires the object that represents our database
-// const { db } = require('../config/db_pgsql');
+// Requires the object that represents our database
+const { db } = require("../config/db_pgsql");
 
-// // Requires an object that contains the different data types in Sequelize
-// const { DataTypes } = require('sequelize');
+// Requires an object that contains the different data types in Sequelize
+const { DataTypes } = require("sequelize");
 
-// // Defines the schema using the define method on our db object. Define has as first argument the name of the model and as second argument an object containing the name of the fields and their features. 
+// Defines the schema using the define method on our db object. Define has as first argument the name of the model and as second argument an object containing the name of the fields and their features.
 
-// const FavPlants = db.define("FavPlants", {
-//     idPlant: {
-//         field: 'id_plant',
-//         type: DataTypes.UUID,
-//         defaultValue: DataTypes.UUIDV1,
-//         primaryKey: true,
-//     },
-//     personalName: {
-//         field: 'personal_name',
-//         type: DataTypes.STRING,
-//     },
-//     commonName: {
-//         field: 'common_name',
-//         type: DataTypes.STRING,
-//     },
-//     scientificName: {
-//         field: 'scientific_name',
-//         type: DataTypes.STRING,
-//     },
-//     watering: {
-//         field: 'watering',
-//         type: DataTypes.STRING,
-//     },
-//     sunlight: {
-//         field: 'sunlight',
-//         type: DataTypes.STRING,
-//     },
-//     status: {
-//         field: 'status',
-//         type: DataTypes.STRING,
-//     },
-//     lastWatered: {
-//         field: 'last_watered',
-//         type: DataTypes.DATE,
-//     },
-//     waterReminder: {
-//         field: 'water_reminder',
-//         type: DataTypes.DATE,
-//     }
-// },
-//     {
-//         db,
-//         modelName: 'FavPlants',
-//         tableName: 'fav_plants',
-//     }
-// );
+const Plants = require('./plants.model')
 
-// // This syncs our model with our database.
-// FavPlants.sync({alter:true});
+const FavPlants = db.define(
+  "FavPlants",
+  {
+    fav_id: {
+      field: "fav_id",
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    plant_id: {
+      field: "plant_id",
+      type: DataTypes.INTEGER,    
+      references: {
+        model: Plants,
+        key: 'plant_id'
+      }
+    },
+    personal_name: {
+      field: "personal_name",
+      type: DataTypes.STRING,
+    },
+    status: {
+      field: "status",
+      type: DataTypes.BOOLEAN,
+    },
+    last_watered: {
+      field: "last_watered",
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    water_reminder: {
+      field: "water_reminder",
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+  },
+  {
+    initialAutoIncrement: 1,
+    db,
+    modelName: "FavPlants",
+    tableName: "fav_plants",
+  }
+);
 
-// module.exports = FavPlants;
+// This syncs our model with our database.
+FavPlants.sync();
+
+module.exports = FavPlants;
