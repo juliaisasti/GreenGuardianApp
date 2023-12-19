@@ -8,7 +8,7 @@ Green Guardian App is a web application designed for you to take care of your pl
 Through our SQL database, operated through Sequelize, our app allows users to see diffent plants' name, scientific name, climate, sunlight and watering needs. 
 Add a personal name for each of your plants as well as the last day you watered them, and our app will tell you when to water them again according to their needs!
 
-This project was created for The Bridge's Fullstack Web Development course as a final project using the different technologies we've learned **during the span of a week**, by [Julia Isasti](https://github.com/juliaisasti).
+This project's first phase was created for The Bridge's Fullstack Web Development course as a final project using the different technologies we've learned **during the span of a week**, by [Julia Isasti](https://github.com/juliaisasti).
 
 ![App Screenshot](https://github.com/juliaisasti/GreenGuardianApp/assets/144235263/5a9ae343-c2af-40fe-a33c-183dd96744ff])
 
@@ -27,10 +27,14 @@ This project was created for The Bridge's Fullstack Web Development course as a 
 
 ## Future updates
 
+- Login and Google Auth.
+- RegEx throughout plant creation form and login.
 - Profile: set your user avatar, username and full name as well as a badge to see if all your plants have been watered.
+- Plant watering reminder through email.
 - CRUD full use in profile view.
-- Filters: Apply filters to refine your search results.
-
+- Filters: apply filters to refine your search results.
+- SASS: Toggle theme according to plants boolean watered status, icons for sunlight and watering.
+- JSON and Swagger documentation.
 
 ![App Screenshot](https://github.com/juliaisasti/GreenGuardianApp/assets/144235263/3ce45700-9e6e-4882-a3ef-d296021783db])
 
@@ -38,6 +42,7 @@ This project was created for The Bridge's Fullstack Web Development course as a 
 ## Technologies Used
 
 - NodeJS
+- Express
 - Helmet
 - React
 - Vite
