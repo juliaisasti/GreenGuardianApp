@@ -37,13 +37,16 @@ This project was created for The Bridge's Fullstack Web Development course as a 
 
 ## Technologies Used
 
+- NodeJS
+- Helmet
 - React
-- Sequelize
+- Vite
+- Chakra UI
+- Sequelize + PostgreSQL
 - pgAdmin
+- Axios
 - JavaScript
 - SASS + SCSS
-- HTML
-- GitHub Pages
   
 ## Support
 
