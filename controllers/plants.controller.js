@@ -55,7 +55,6 @@ const deletePlant = async (req, res) => {
     console.log(error);
     res.status(400).json({ error: error.message });
   }
-  
 };
 
 // POPULATE WITH SEED

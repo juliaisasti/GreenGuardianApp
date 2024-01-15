@@ -5,8 +5,9 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const helmet = require("helmet");
+// PAQUETE PARA IMPLEMENTAR SEGURIDAD EN LA APLICACIÓN
 // Set Content Security Policies
+const helmet = require("helmet");
 const scriptSources = ["'self'", "'unsafe-inline'", "'unsafe-eval'"];
 
 app.use(
@@ -20,6 +21,7 @@ app.use(
   })
 );
 
+// PERMITIR EL ACCESO DEL FRONT AL BACK 
 app.use(cors({origin:true, credentials:true}))
 
 const plantsRouter = require('./routes/plants.route')
@@ -31,9 +33,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/plants", plantsRouter);
 app.use("/fav-plants", favPlantsRouter);
 // app.use("/users", usersRouter)
-
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening!!!! on http://localhost:${port}`);
